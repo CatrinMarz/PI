@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+
+while true; do
+	sleep 5
+
+	value=`cat /sys/bus/w1/devices/28-00000a553a90/w1_slave |grep t= | sed 's/.*t=\(..\)\(...\)/\1.\2/'`
+	echo $value
+	rrdupdate /var/www/html/temperatur1.rrd N:$value
+ 
+done
